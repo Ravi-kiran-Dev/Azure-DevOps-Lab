@@ -23,19 +23,19 @@ With 9 years in Azure support, I’ve seen how fragile manual systems can be. Th
 
 | Azure Infra | AKS Nodes |
 |-------------|-----------|
-| ![Azure](screenshots/01-terraform-apply-success.png) | ![Nodes](screenshots/02-kubectl-nodes.png) |
+| ![Azure](Screenshots/01-terraform-apply-success.png) | ![Nodes](Screenshots/02-kubectl-nodes.png) |
 
 | Strimzi CRDs | Kafka Pods |
 |--------------|------------|
-| ![CRDs](screenshots/03-strimzi-crds.png) | ![Pods](screenshots/04-kafka-pods.png) |
+| ![CRDs](Screenshots/03-strimzi-crds.png) | ![Pods](Screenshots/04-kafka-pods.png) |
 
 | Kafka CR | Azure Portal (Main RG) |
 |----------|------------------------|
-| ![CR](screenshots/05-kafka-cr.png) | ![Portal](screenshots/06a-azure-main-rg.png) |
+| ![CR](Screenshots/05-kafka-cr.png) | ![Portal](Screenshots/06a-azure-main-rg.png) |
 
 | Azure Portal (Node RG) |
 |------------------------|
-| ![Node RG](screenshots/06b-azure-node-rg.png) |
+| ![Node RG](Screenshots/06b-azure-node-rg.png) |
 
 > 💡 **Note**:  
 > - `kafka-devops-rg`: Terraform-managed (control plane)  
