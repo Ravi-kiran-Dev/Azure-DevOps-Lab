@@ -43,7 +43,7 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 ### Azure Infrastructure
 | Resource Group | AKS Nodes |
 |----------------|-----------|
-| ![Azure RG](screenshots/01-azure-infra-applied.png) | ![Nodes](screenshots/02-kubectl-nodes.png) |
+| ![Azure RG](screenshots/01-terraform-apply-success.png) | ![Nodes](screenshots/02-kubectl-nodes.png) |
 
 ### Kafka Deployment
 | Strimzi CRDs | Kafka Pods | Kafka Custom Resource |
