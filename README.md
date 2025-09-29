@@ -26,22 +26,22 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 ### Azure Infrastructure
 | Resource Group | AKS Nodes |
 |----------------|-----------|
-| ![Azure RG](screenshots/01-azure-infra-applied.png) | ![Nodes](screenshots/02-kubectl-nodes.png) |
+| ![Azure RG](Screenshots/01-terraform-apply-success.png) | ![Nodes](Screenshots/02-kubectl-nodes.png) |
 
 ### Kafka Deployment
 | Strimzi CRDs | Kafka Pods | Kafka Custom Resource |
 |--------------|------------|----------------------|
-| ![CRDs](screenshots/03-strimzi-crds.png) | ![Pods](screenshots/04-kafka-pods.png) | ![CR](screenshots/05-kafka-cr.png) |
+| ![CRDs](Screenshots/03-strimzi-crds.png) | ![Pods](Screenshots/04-kafka-pods.png) | ![CR](Screenshots/05-kafka-cr.png) |
 
 ### Azure Portal
 | Main Resource Group | Node Resource Group |
 |---------------------|---------------------|
-| ![Main RG](screenshots/06a-azure-main-rg.png) | ![Node RG](screenshots/06b-azure-node-rg.png) |
+| ![Main RG](Screenshots/06a-azure-main-rg.png) | ![Node RG](Screenshots/06b-azure-node-rg.png) |
 
 ### Payment Processing Pipeline
 | Payment Producer | Fraud Detection | Raw Kafka Messages |
 |------------------|-----------------|-------------------|
-| ![Producer](screenshots/07-payment-producer.png) | ![Fraud](screenshots/08-fraud-consumer.png) | ![Raw](screenshots/09-kafka-raw.png) |
+| ![Producer](Screenshots/07-payment-producer.png) | ![Fraud](Screenshots/08-fraud-consumer.png) | ![Raw](Screenshots/09-kafka-raw.png) |
 
 ## 💡 Key Technical Decisions
 - **Cost Optimization**: Used B2s VMs (free on Dev/Test subscriptions)
