@@ -22,7 +22,20 @@ resource "kubernetes_manifest" "kafka_cluster" {
         "version"   = "3.7.0",
         "replicas"  = 1,
         "listeners" = [
-          { "name" = "plain", "port" = 9092, "type" = "internal", "tls" = false }
+          { "name" = "plain", "port" = 9092, "type" = "internal", "tls" = false },
+          { "name" = "external", "port" = 9094, "type" = "nodeport", "tls" = false, "configuration" = {
+            "bootstrap" = {
+              "nodePort" = 32094
+            },
+            "brokers" = [
+              {
+            "broker" = 0,
+            "advertisedHost" = "localhost",
+            "advertisedPort" = 9094
+          }
+        ]
+          }
+          }
         ],
         "config" = {
           "offsets.topic.replication.factor" = 1,
