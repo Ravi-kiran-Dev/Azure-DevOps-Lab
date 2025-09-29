@@ -35,36 +35,58 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 **Problem**: Avoiding Azure costs on free trial/Dev/Test subscriptions.  
 **Solution**: Used B2s VMs (free tier eligible), ran resources only as long as needed for validation, and immediately destroyed everything after capturing proof.
 
+## 🏗️ Architecture Overview
+![Event-Driven Architecture](architecture.png)
+
 ## 🖼️ Deployment Proof
 
 ### Azure Infrastructure
 | Resource Group | AKS Nodes |
 |----------------|-----------|
-| ![Azure RG](Screenshots/01-terraform-apply-success.png) | ![Nodes](Screenshots/02-kubectl-nodes.png) |
+| ![Azure RG](screenshots/01-azure-infra-applied.png) | ![Nodes](screenshots/02-kubectl-nodes.png) |
 
 ### Kafka Deployment
 | Strimzi CRDs | Kafka Pods | Kafka Custom Resource |
 |--------------|------------|----------------------|
-| ![CRDs](Screenshots/03-strimzi-crds.png) | ![Pods](Screenshots/04-kafka-pods.png) | ![CR](Screenshots/05-kafka-cr.png) |
+| ![CRDs](screenshots/03-strimzi-crds.png) | ![Pods](screenshots/04-kafka-pods.png) | ![CR](screenshots/05-kafka-cr.png) |
 
 ### Azure Portal
 | Main Resource Group | Node Resource Group |
 |---------------------|---------------------|
-| ![Main RG](Screenshots/06a-azure-main-rg.png) | ![Node RG](Screenshots/06b-azure-node-rg.png) |
+| ![Main RG](screenshots/06a-azure-main-rg.png) | ![Node RG](screenshots/06b-azure-node-rg.png) |
 
 ### Payment Processing Pipeline
 | Payment Producer | Fraud Detection | Raw Kafka Messages |
 |------------------|-----------------|-------------------|
-| ![Payment Producer sending events](Screenshots/07-payment-producer.png) | ![Fraud Detection consumer](Screenshots/08-fraud-consumer.png) | ![Raw Kafka messages](Screenshots/09-kafka-raw.png) |
+| ![Payment Producer sending events](screenshots/07-payment-producer.png) | ![Fraud Detection consumer](screenshots/08-fraud-consumer.png) | ![Raw Kafka messages](screenshots/09-kafka-raw.png) |
 
 ## 📂 Project Structure
-azure-devops-lab/
-├── terraform/          # Infrastructure as Code
-├── apps/               # Applications
-│   ├── payment-producer/  # Python producer sending payment events
-│   └── fraud-consumer/    # Python consumer with fraud detection logic
-├── screenshots/        # Visual proof of working deployment
-└── README.md           # This documentation
+azure-kafka-devops-lab/
+├── architecture.png # Architecture diagram
+├── terraform/ # Infrastructure as Code
+│ ├── main.tf
+│ ├── infra.tf
+│ ├── k8s.tf
+│ └── variables.tf
+├── apps/
+│ ├── payment-producer/ # Python producer sending payment events
+│ │ ├── payment_producer.py
+│ │ └── requirements.txt
+│ └── fraud-consumer/ # Python consumer with fraud detection logic
+│ ├── fraud_consumer.py
+│ └── requirements.txt
+├── screenshots/ # Visual proof of working deployment
+│ ├── 01-azure-infra-applied.png
+│ ├── 02-kubectl-nodes.png
+│ ├── 03-strimzi-crds.png
+│ ├── 04-kafka-pods.png
+│ ├── 05-kafka-cr.png
+│ ├── 06a-azure-main-rg.png
+│ ├── 06b-azure-node-rg.png
+│ ├── 07-payment-producer.png
+│ ├── 08-fraud-consumer.png
+│ └── 09-kafka-raw.png
+└── README.md # This documentation
 
 
 ## ▶️ How to Reproduce
