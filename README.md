@@ -61,33 +61,16 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 | ![Payment Producer sending events](Screenshots/07-payment-producer.png) | ![Fraud Detection consumer](Screenshots/08-fraud-consumer.png) | ![Raw Kafka messages](Screenshots/09-kafka-raw.png) |
 
 ## 📂 Project Structure
+```
 azure-kafka-devops-lab/
-├── architecture.png # Architecture diagram
 ├── terraform/ # Infrastructure as Code
-│ ├── main.tf
-│ ├── infra.tf
-│ ├── k8s.tf
-│ └── variables.tf
 ├── apps/
 │ ├── payment-producer/ # Python producer sending payment events
-│ │ ├── payment_producer.py
-│ │ └── requirements.txt
 │ └── fraud-consumer/ # Python consumer with fraud detection logic
-│ ├── fraud_consumer.py
-│ └── requirements.txt
 ├── screenshots/ # Visual proof of working deployment
-│ ├── 01-azure-infra-applied.png
-│ ├── 02-kubectl-nodes.png
-│ ├── 03-strimzi-crds.png
-│ ├── 04-kafka-pods.png
-│ ├── 05-kafka-cr.png
-│ ├── 06a-azure-main-rg.png
-│ ├── 06b-azure-node-rg.png
-│ ├── 07-payment-producer.png
-│ ├── 08-fraud-consumer.png
-│ └── 09-kafka-raw.png
 └── README.md # This documentation
 
+```
 
 ## ▶️ How to Reproduce
 
