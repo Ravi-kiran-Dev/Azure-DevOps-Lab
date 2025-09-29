@@ -21,6 +21,20 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 4. **Fraud Detection**: Real-time consumer flags high-value transactions
 5. **Validation**: Verified with Kafka console consumer and Azure Portal
 
+## 🧠 Key Challenges & Solutions
+
+### Kafka External Access
+**Problem**: Kafka advertised internal Kubernetes DNS names, making external access impossible from local machines.  
+**Solution**: Configured Strimzi with external listeners and `advertisedHost: localhost` for local development.
+
+### Python 3.13 Compatibility  
+**Problem**: `kafka-python` library incompatible with Python 3.13 due to deprecated `six` dependency.  
+**Solution**: Implemented collections compatibility patch and used minimal, robust producer/consumer code.
+
+### Resource Cleanup & Cost Management  
+**Problem**: Avoiding Azure costs on free trial/Dev/Test subscriptions.  
+**Solution**: Used B2s VMs (free tier eligible), ran resources only as long as needed for validation, and immediately destroyed everything after capturing proof.
+
 ## 🖼️ Deployment Proof
 
 ### Azure Infrastructure
@@ -41,15 +55,28 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 ### Payment Processing Pipeline
 | Payment Producer | Fraud Detection | Raw Kafka Messages |
 |------------------|-----------------|-------------------|
-| ![Producer](Screenshots/07-payment-producer.png) | ![Fraud](Screenshots/08-fraud-consumer.png) | ![Raw](Screenshots/09-kafka-raw.png) |
+| ![Payment Producer sending events](Screenshots/07-payment-producer.png) | ![Fraud Detection consumer](Screenshots/08-fraud-consumer.png) | ![Raw Kafka messages](Screenshots/09-kafka-raw.png) |
 
-## 💡 Key Technical Decisions
-- **Cost Optimization**: Used B2s VMs (free on Dev/Test subscriptions)
-- **External Access**: Configured Kafka advertised listeners for local development
-- **Resilience**: Implemented proper error handling and timeouts in Python clients
-- **Validation**: Verified every component before proceeding to next step
+## 📂 Project Structure
+azure-kafka-devops-lab/
+├── terraform/ # Infrastructure as Code
+├── apps/
+│ ├── payment-producer/ # Python producer sending payment events
+│ └── fraud-consumer/ # Python consumer with fraud detection logic
+├── screenshots/ # Visual proof of working deployment
+└── README.md # This documentation
+
 
 ## ▶️ How to Reproduce
+
+### Prerequisites
+- Azure subscription (Free Trial or Dev/Test)
+- Azure CLI (`az login`)
+- kubectl
+- Python 3.7+
+- Terraform
+
+### Steps
 ```bash
 # 1. Deploy Azure infrastructure
 terraform apply -target=azurerm_resource_group.main -target=azurerm_kubernetes_cluster.main
@@ -57,12 +84,16 @@ terraform apply -target=azurerm_resource_group.main -target=azurerm_kubernetes_c
 # 2. Configure kubectl
 az aks get-credentials --name lab-aks --resource-group kafka-devops-rg
 
-# 3. Deploy Kafka
+# 3. Deploy Kafka with external listeners
 terraform apply
 
 # 4. Port-forward for local access
 kubectl port-forward -n kafka svc/my-cluster-kafka-external-bootstrap 9094:9094
 
-# 5. Run producer/consumer
+# 5. Install dependencies
+pip install -r apps/payment-producer/requirements.txt
+pip install -r apps/fraud-consumer/requirements.txt
+
+# 6. Run producer/consumer
 python apps/payment-producer/payment_producer.py
 python apps/fraud-consumer/fraud_consumer.py
