@@ -58,13 +58,13 @@ With 9 years in Azure support, I've seen how fragile manual systems can be. This
 | ![Payment Producer sending events](Screenshots/07-payment-producer.png) | ![Fraud Detection consumer](Screenshots/08-fraud-consumer.png) | ![Raw Kafka messages](Screenshots/09-kafka-raw.png) |
 
 ## 📂 Project Structure
-azure-kafka-devops-lab/
-├── terraform/ # Infrastructure as Code
-├── apps/
-│ ├── payment-producer/ # Python producer sending payment events
-│ └── fraud-consumer/ # Python consumer with fraud detection logic
-├── screenshots/ # Visual proof of working deployment
-└── README.md # This documentation
+azure-devops-lab/
+├── terraform/          # Infrastructure as Code
+├── apps/               # Applications
+│   ├── payment-producer/  # Python producer sending payment events
+│   └── fraud-consumer/    # Python consumer with fraud detection logic
+├── screenshots/        # Visual proof of working deployment
+└── README.md           # This documentation
 
 
 ## ▶️ How to Reproduce
